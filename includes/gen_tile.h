@@ -23,6 +23,7 @@ struct item {
 
 //int render(Map &m, int x, int y, int z, const char *filename);
 void *render_thread(void *);
+void *render_thread_prio(void *);
 struct item *fetch_request(void);
 void delete_request(struct item *item);
 void render_init(const char *plugins_dir, const char* font_dir, int font_recurse);

@@ -316,7 +316,9 @@ void render_init(const char *plugins_dir, const char* font_dir, int font_dir_rec
     load_fonts(font_dir, font_dir_recurse);
 }
 
-void *render_thread(void * arg)
+
+
+void *render_thread(void * arg, bool prio)
 {
     xmlconfigitem * parentxmlconfig = (xmlconfigitem *)arg;
     xmlmapconfig maps[XMLCONFIGS_MAX];
@@ -380,7 +382,7 @@ void *render_thread(void * arg)
 
     while (1) {
         enum protoCmd ret;
-        struct item *item = request_queue_fetch_request(render_request_queue);
+        struct item *item = request_queue_fetch_request(render_request_queue, prio);
         render_time = -1;
         if (item) {
             struct protocol *req = &item->req;
@@ -465,3 +467,11 @@ void *render_thread(void * arg)
     return NULL;
 }
 
+void *render_thread(void * arg)
+{
+    return render_thread(arg, true);
+}
+void *render_thread(void * arg)
+{
+    return render_thread(arg, false);
+}

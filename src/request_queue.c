@@ -151,7 +151,7 @@ static enum protoCmd pending(struct request_queue * queue, struct item *test) {
     return cmdRender;
 }
 
-struct item *request_queue_fetch_request(struct request_queue * queue, boolean onlyPrio) {
+struct item *request_queue_fetch_request(struct request_queue * queue, int onlyPrio) {
     struct item *item = NULL;
 
     pthread_mutex_lock(&(queue->qLock));
@@ -167,15 +167,15 @@ struct item *request_queue_fetch_request(struct request_queue * queue, boolean o
         item = queue->reqHead.next;
         queue->reqNum--;
         queue->stats.noReqRender++;
-    } else if (queue->reqLowNum && !prio) {
+    } else if (queue->reqLowNum && !onlyPrio) {
         item = queue->reqLowHead.next;
         queue->reqLowNum--;
         queue->stats.noReqLowRender++;
-    } else if (queue->dirtyNum && !prio) {
+    } else if (queue->dirtyNum && !onlyPrio) {
         item = queue->dirtyHead.next;
         queue->dirtyNum--;
         queue->stats.noDirtyRender++;
-    } else if (queue->reqBulkNum && !prio) {
+    } else if (queue->reqBulkNum && !onlyPrio) {
         item = queue->reqBulkHead.next;
         queue->reqBulkNum--;
         queue->stats.noReqBulkRender++;

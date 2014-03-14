@@ -151,6 +151,10 @@ static enum protoCmd pending(struct request_queue * queue, struct item *test) {
     return cmdRender;
 }
 
+struct item *request_queue_fetch_request(struct request_queue * queue) {
+    return request_queue_fetch_request(queue, 0);
+}
+
 struct item *request_queue_fetch_request(struct request_queue * queue, int onlyPrio) {
     struct item *item = NULL;
 

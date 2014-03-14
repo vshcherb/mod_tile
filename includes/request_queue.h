@@ -65,7 +65,8 @@ struct request_queue {
 struct request_queue *request_queue_init();
 void request_queue_close(struct request_queue * queue);
 
-struct item *request_queue_fetch_request(struct request_queue * queue, int onlyPrio=0);
+struct item *request_queue_fetch_request(struct request_queue * queue);
+struct item *request_queue_fetch_request(struct request_queue * queue, int onlyPrio);
 enum protoCmd request_queue_add_request(struct request_queue * queue, struct item * request);
 
 void request_queue_remove_request(struct request_queue * queue, struct item * request, int render_time);

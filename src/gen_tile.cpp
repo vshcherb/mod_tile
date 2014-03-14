@@ -382,7 +382,7 @@ void *render_thread(void * arg, int prio)
 
     while (1) {
         enum protoCmd ret;
-        struct item *item = request_queue_fetch_request(render_request_queue, prio);
+        struct item *item = request_queue_fetch_requestPrio(render_request_queue, prio);
         render_time = -1;
         if (item) {
             struct protocol *req = &item->req;

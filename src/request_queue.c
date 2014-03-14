@@ -152,10 +152,10 @@ static enum protoCmd pending(struct request_queue * queue, struct item *test) {
 }
 
 struct item *request_queue_fetch_request(struct request_queue * queue) {
-    return request_queue_fetch_request(queue, 0);
+    return request_queue_fetch_requestPrio(queue, 0);
 }
 
-struct item *request_queue_fetch_request(struct request_queue * queue, int onlyPrio) {
+struct item *request_queue_fetch_requestPrio(struct request_queue * queue, int onlyPrio) {
     struct item *item = NULL;
 
     pthread_mutex_lock(&(queue->qLock));

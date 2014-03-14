@@ -318,7 +318,7 @@ void render_init(const char *plugins_dir, const char* font_dir, int font_dir_rec
 
 
 
-void *render_thread(void * arg, bool prio)
+void *render_thread(void * arg, boolean prio)
 {
     xmlconfigitem * parentxmlconfig = (xmlconfigitem *)arg;
     xmlmapconfig maps[XMLCONFIGS_MAX];

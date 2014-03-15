@@ -318,7 +318,7 @@ void render_init(const char *plugins_dir, const char* font_dir, int font_dir_rec
 
 
 
-void *render_thread(void * arg, int prio)
+void *render_thread_param(void * arg, int prio)
 {
     xmlconfigitem * parentxmlconfig = (xmlconfigitem *)arg;
     xmlmapconfig maps[XMLCONFIGS_MAX];
@@ -467,11 +467,11 @@ void *render_thread(void * arg, int prio)
     return NULL;
 }
 
-void *render_thread(void * arg)
+void *render_thread_prio(void * arg)
 {
-    return render_thread(arg, 1);
+    return render_thread_param(arg, 1);
 }
 void *render_thread(void * arg)
 {
-    return render_thread(arg, 0);
+    return render_thread_param(arg, 0);
 }

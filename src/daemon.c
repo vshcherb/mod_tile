@@ -931,7 +931,7 @@ int main(int argc, char **argv)
     render_threads = (pthread_t *) malloc(sizeof(pthread_t) * config.num_threads);
 
     for(i=0; i<config.num_threads; i++) {
-        if (pthread_create(&render_threads[i], NULL, i%2==1?render_thread:render_thread_prio, (void *)maps)) {
+        if (pthread_create(&render_threads[i], NULL, i%2==1?render_thread : render_thread_prio, (void *)maps)) {
             fprintf(stderr, "error spawning render thread\n");
             close(fd);
             exit(7);
